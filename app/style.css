@@ -1,0 +1,9 @@
+/* Codes by mahdi tasha */
+/* Importing part */
+@import "tailwindcss";
+
+/* Defining base theme settings */
+@theme base {
+  --color-base: #0466c8;
+  --color-base-light: #1982c4;
+}
