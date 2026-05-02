@@ -131,8 +131,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   // Returning JSX
   return (
     <html suppressHydrationWarning lang="en">
-      <body className={cn("bg-base overflow-x-hidden", interFont.className)}>
-        <div className="max-w-lg px-4 py-8 mx-auto bg-white">{children}</div>
+      <body className={cn("bg-base overflow-hidden", interFont.className)}>
+        <div className="lg:max-w-lg px-4 lg:py-8 py-4 mx-auto overflow-x-hidden overflow-y-auto h-dvh bg-white">
+          {children}
+        </div>
       </body>
     </html>
   );
