@@ -21,30 +21,26 @@ export default function HomePage() {
             <span className="font-bold">account</span> !
           </h3>
         </FadeUp>
-        <FadeUp delay={2}>
-          <form action="#">
-            <Input
-              placeholder="Phone"
-              type="tel"
-              className="mb-6"
-              left={{
-                type: "text",
-                text: "+98",
-              }}
-            />
-            <Button type="submit" className="block mx-auto mb-2 min-w-1/2">
-              Lets Go
-            </Button>
-            <Button
-              type="button"
-              className="block mx-auto mb-2 min-w-1/2"
-              variant="secondary"
-            >
+      </div>
+      <FadeUp delay={2}>
+        <form action="#">
+          <Input
+            placeholder="Phone"
+            type="tel"
+            className="mb-6"
+            left={{
+              type: "text",
+              text: "+98",
+            }}
+          />
+          <div className="flex gap-1.5 flex-wrap">
+            <Button type="submit">Lets Go</Button>
+            <Button type="button" variant="secondary">
               Got Email ?
             </Button>
-          </form>
-        </FadeUp>
-      </div>
+          </div>
+        </form>
+      </FadeUp>
     </>
   );
 }

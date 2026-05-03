@@ -10,6 +10,7 @@ export interface RootLayoutProps {
 export interface ButtonProps extends ComponentProps<"button"> {
   variant?: "primary" | "secondary";
   size?: "normal" | "icon";
+  asChild?: boolean;
 }
 
 export interface TooltipProps {
