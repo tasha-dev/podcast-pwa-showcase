@@ -15,7 +15,7 @@ export default function ThemeToggler() {
 
   // Returning JSX
   return (
-    <Tooltip triggerAsChild content="Toggle Theme" className="mb-5">
+    <Tooltip triggerAsChild content="Toggle Theme">
       <Button
         variant="primary"
         onClick={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
