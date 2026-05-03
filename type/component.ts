@@ -18,3 +18,25 @@ export interface TooltipProps {
   content: string;
   className?: string;
 }
+
+export interface FadeUpProps {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}
+
+export interface InputProps extends Omit<ComponentProps<"input">, "id"> {
+  label?: {
+    title: string;
+    id: string;
+  };
+  left?:
+    | {
+        type: "icon";
+        icon: ReactNode;
+      }
+    | {
+        type: "text";
+        text: string;
+      };
+}
