@@ -10,6 +10,9 @@ export default function Button({
   size = "normal",
   className,
   asChild = false,
+  loading = false,
+  disabled = false,
+  children,
   ...props
 }: ButtonProps) {
   // Defining variables
@@ -18,9 +21,11 @@ export default function Button({
   // Returning JSX
   return (
     <Comp
+      disabled={loading || disabled}
       className={cn(
         "font-normal text-sm rounded-lg outline-none cursor-pointer",
         "duration-500 transition-all active:scale-90 ring-0 focus-visible:ring-3",
+        "disabled:opacity-50 disabled:cursor-not-allowed",
         size === "normal"
           ? "h-9 px-3 flex items-center w-fit"
           : "size-9 flex items-center justify-center",
@@ -30,6 +35,8 @@ export default function Button({
         className,
       )}
       {...props}
-    />
+    >
+      {loading ? "loading" : children}
+    </Comp>
   );
 }

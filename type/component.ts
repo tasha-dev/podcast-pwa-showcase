@@ -11,6 +11,7 @@ export interface ButtonProps extends ComponentProps<"button"> {
   variant?: "primary" | "secondary";
   size?: "normal" | "icon";
   asChild?: boolean;
+  loading?: boolean;
 }
 
 export interface TooltipProps {
@@ -27,6 +28,7 @@ export interface FadeUpProps {
 }
 
 export interface InputProps extends Omit<ComponentProps<"input">, "id"> {
+  errorMessage?: string;
   label?: {
     title: string;
     id: string;

@@ -4,7 +4,7 @@
 
 // Importing part
 import { FadeUpProps } from "@/type/component";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 // Creating and exporting FadeUp component as deafult
 export default function FadeUp({
@@ -14,30 +14,32 @@ export default function FadeUp({
 }: FadeUpProps) {
   // Returninig JSX
   return (
-    <motion.div
-      className={className}
-      transition={{
-        duration: 0.7,
-        ease: "easeInOut",
-        delay,
-      }}
-      initial={{
-        opacity: 0,
-        y: 10,
-        filter: "blur(15px)",
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-      }}
-      exit={{
-        opacity: 0,
-        y: 10,
-        filter: "blur(15px)",
-      }}
-    >
-      {children}
-    </motion.div>
+    <AnimatePresence key={"fade-up-animation-presence"}>
+      <motion.div
+        className={className}
+        transition={{
+          duration: 0.7,
+          ease: "easeInOut",
+          delay,
+        }}
+        initial={{
+          opacity: 0,
+          y: 10,
+          filter: "blur(15px)",
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+        }}
+        exit={{
+          opacity: 0,
+          y: 10,
+          filter: "blur(15px)",
+        }}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
   );
 }

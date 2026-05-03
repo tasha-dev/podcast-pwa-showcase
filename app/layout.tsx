@@ -140,7 +140,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             interFont.className,
           )}
         >
-          <Toaster richColors position="bottom-center" />
+          <Toaster position="bottom-center" richColors />
           <div className="lg:max-w-lg px-4 lg:py-8 py-4 mx-auto overflow-x-hidden overflow-y-auto h-dvh bg-white dark:bg-neutral-900 text-neutral-900">
             {children}
           </div>
