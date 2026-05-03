@@ -5,6 +5,8 @@ import { RootLayoutProps } from "@/type/component";
 import localFont from "next/font/local";
 import "@/app/style.css";
 import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
+import { Toaster } from "sonner";
 
 // Defining metadata
 export const metadata: Metadata = {
@@ -131,11 +133,19 @@ export default function RootLayout({ children }: RootLayoutProps) {
   // Returning JSX
   return (
     <html suppressHydrationWarning lang="en">
-      <body className={cn("bg-base overflow-hidden", interFont.className)}>
-        <div className="lg:max-w-lg px-4 lg:py-8 py-4 mx-auto overflow-x-hidden overflow-y-auto h-dvh bg-white">
-          {children}
-        </div>
-      </body>
+      <ThemeProvider>
+        <body
+          className={cn(
+            "dark:bg-base-light bg-base overflow-hidden",
+            interFont.className,
+          )}
+        >
+          <Toaster richColors position="bottom-center" />
+          <div className="lg:max-w-lg px-4 lg:py-8 py-4 mx-auto overflow-x-hidden overflow-y-auto h-dvh bg-white dark:bg-neutral-900 text-neutral-900">
+            {children}
+          </div>
+        </body>
+      </ThemeProvider>
     </html>
   );
 }

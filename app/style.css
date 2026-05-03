@@ -1,6 +1,10 @@
 /* Codes by mahdi tasha */
 /* Importing part */
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Defining custom variant for dark mode */
+@custom-variant dark (&:is([data-theme="dark"] *));
 
 /* Defining base theme settings */
 @theme base {
