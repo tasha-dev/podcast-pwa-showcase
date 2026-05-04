@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { HomePageStepContext } from "@/lib/context";
 import { SubmitHandler, useForm } from "react-hook-form";
 import z from "zod";
-import { phoneNumberLogin as formSchema } from "@/lib/formSchema";
+import { emailLogin as formSchema } from "@/lib/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { sleep } from "@/lib/util";
@@ -20,8 +20,8 @@ import useUserStore from "@/lib/store";
 // Defining form type
 type formType = z.infer<typeof formSchema>;
 
-// Creating and exporting PhoneLogin mini page as deafult
-export default function PhoneLogin() {
+// Creating and exporting EmailLogin mini page as deafult
+export default function EmailLogin() {
   // Defining hooks
   const homePageStep = useContext(HomePageStepContext);
   const userStore = useUserStore();
@@ -33,36 +33,28 @@ export default function PhoneLogin() {
   const submitHandler: SubmitHandler<formType> = async (data) => {
     await sleep(3000);
     toast.success("You are logged in now.");
-    console.log(userStore, data.phoneNumber);
+    console.log(userStore, data.email);
   };
 
   // Returning JSX
   return (
     <>
       <ThemeToggler />
-      <div className="prose dark:prose-invert prose-neutral space-y-0">
-        <FadeUp className="mb-4">
-          <h1 className="mb-0 mt-2 truncate">Welcome 👋</h1>
-        </FadeUp>
-        <FadeUp className="mb-6" delay={1}>
-          <h3 className="mt-0 truncate">
-            Lets create your <br />
-            <span className="font-bold">account</span> !
-          </h3>
-        </FadeUp>
+      <div className="prose dark:prose-invert prose-neutral space-y-0 mb-4">
+        <h1 className="mb-0 mt-2 truncate">Welcome 👋</h1>
+        <h3 className="mt-0 truncate">
+          Lets create your <br />
+          <span className="font-bold">account</span> !
+        </h3>
       </div>
-      <FadeUp delay={2}>
+      <FadeUp delay={1}>
         <form action="#" onSubmit={form.handleSubmit(submitHandler)}>
           <Input
-            placeholder="Phone"
-            type="tel"
+            placeholder="Email"
+            type="email"
             className="mb-6"
-            left={{
-              type: "text",
-              text: "+98",
-            }}
-            errorMessage={form.formState.errors.phoneNumber?.message}
-            {...form.register("phoneNumber")}
+            errorMessage={form.formState.errors.email?.message}
+            {...form.register("email")}
           />
           <div className="flex gap-1.5 flex-wrap">
             <Button loading={form.formState.isSubmitting} type="submit">
@@ -71,10 +63,10 @@ export default function PhoneLogin() {
             <Button
               type="button"
               variant="secondary"
-              onClick={() => homePageStep?.setStep("email")}
+              onClick={() => homePageStep?.setStep("phone")}
               disabled={form.formState.isSubmitting}
             >
-              Got Email ?
+              Back
             </Button>
           </div>
         </form>

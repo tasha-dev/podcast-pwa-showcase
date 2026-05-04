@@ -9,3 +9,7 @@ export const phoneNumberLogin = z.object({
     message: "The phone number is not valid",
   }),
 });
+
+export const emailLogin = z.object({
+  email: z.string().email(),
+});

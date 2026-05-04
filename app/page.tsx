@@ -3,7 +3,7 @@
 "use client";
 
 // Importing part
-import FadeUp from "@/component/animation/fadeUp";
+import EmailLogin from "@/component/miniPage/emailLogin";
 import PhoneLogin from "@/component/miniPage/phoneLogin";
 import { HomePageStepContext } from "@/lib/context";
 import { HomePageContextType } from "@/type/context";
@@ -22,7 +22,7 @@ export default function HomePage() {
         step,
       }}
     >
-      {step === "phone" ? <PhoneLogin /> : <FadeUp>{step}</FadeUp>}
+      {step === "phone" ? <PhoneLogin /> : <EmailLogin />}
     </HomePageStepContext.Provider>
   );
 }
