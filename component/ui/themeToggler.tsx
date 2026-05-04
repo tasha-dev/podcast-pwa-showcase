@@ -21,7 +21,7 @@ export default function ThemeToggler() {
         onClick={() => setTheme((prev) => (prev === "dark" ? "light" : "dark"))}
         size="icon"
       >
-        <SunMoon className="size-4" />
+        <SunMoon />
       </Button>
     </Tooltip>
   );

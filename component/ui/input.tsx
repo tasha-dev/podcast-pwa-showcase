@@ -50,6 +50,22 @@ export default function Input({
             </label>
           </div>
         )}
+        {left && (
+          <div
+            className={cn(
+              "shrink-0 border-r-2 border-r-current flex items-center justify-center",
+              left.type === "icon" ? "size-9" : "px-3 h-9",
+            )}
+          >
+            {left.type === "icon" ? (
+              left.icon
+            ) : (
+              <span className="font-light text-current text-xs truncate block text-center">
+                {left.text}
+              </span>
+            )}
+          </div>
+        )}
         <input
           placeholder={placeholder}
           onBlur={(e) => {
@@ -66,22 +82,6 @@ export default function Input({
           )}
           {...props}
         />
-        {left && (
-          <div
-            className={cn(
-              "shrink-0 border-l-2 border-l-current flex items-center justify-center",
-              left.type === "icon" ? "size-9" : "px-3 h-9",
-            )}
-          >
-            {left.type === "icon" ? (
-              left.icon
-            ) : (
-              <span className="font-light text-current text-xs truncate block text-center">
-                {left.text}
-              </span>
-            )}
-          </div>
-        )}
       </div>
       {errorMessage && (
         <p className="mt-1.5 text-red-500 text-left text-sm font-normal">

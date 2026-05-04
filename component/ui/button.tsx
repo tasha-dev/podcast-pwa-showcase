@@ -3,6 +3,8 @@
 import { cn } from "@/lib/util";
 import { ButtonProps } from "@/type/component";
 import { Slot } from "@radix-ui/react-slot";
+import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
 
 // Creating and exporting Button component as default
 export default function Button({
@@ -23,12 +25,10 @@ export default function Button({
     <Comp
       disabled={loading || disabled}
       className={cn(
-        "font-normal text-sm rounded-lg outline-none cursor-pointer",
+        "font-normal text-sm rounded-lg outline-none cursor-pointer relative overflow-hidden",
         "duration-500 transition-all active:scale-90 ring-0 focus-visible:ring-3",
         "disabled:opacity-50 disabled:cursor-not-allowed",
-        size === "normal"
-          ? "h-9 px-3 flex items-center w-fit"
-          : "size-9 flex items-center justify-center",
+        size === "normal" ? "w-fit" : "size-9",
         variant === "primary"
           ? "hover:bg-base text-white bg-base-light ring-base/40"
           : "bg-white dark:bg-neutral-900 text-base ring-base/40",
@@ -36,7 +36,54 @@ export default function Button({
       )}
       {...props}
     >
-      {loading ? "loading" : children}
+      <motion.div
+        className="absolute left-0 top-0 size-full flex items-center justify-center"
+        transition={{
+          duration: 0.3,
+          ease: "easeInOut",
+        }}
+        initial={{
+          y: "100%",
+        }}
+        exit={{
+          y: "100%",
+        }}
+        animate={
+          loading
+            ? {
+                y: 0,
+              }
+            : {
+                y: "100%",
+              }
+        }
+      >
+        <Loader2 className="size-4 animate-spin" />
+      </motion.div>
+      <motion.div
+        className="h-9 flex items-center justify-center px-3"
+        transition={{
+          duration: 0.3,
+          ease: "easeInOut",
+        }}
+        initial={{
+          y: 0,
+        }}
+        exit={{
+          y: 0,
+        }}
+        animate={
+          loading
+            ? {
+                y: "-100%",
+              }
+            : {
+                y: 0,
+              }
+        }
+      >
+        {children}
+      </motion.div>
     </Comp>
   );
 }
