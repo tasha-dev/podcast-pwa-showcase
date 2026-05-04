@@ -15,7 +15,8 @@ import { phoneNumberLogin as formSchema } from "@/lib/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { sleep } from "@/lib/util";
-import useUserStore from "@/lib/store";
+import { UserLocalStorage } from "@/type/localStorage";
+import useLocalStorageState from "use-local-storage-state";
 
 // Defining form type
 type formType = z.infer<typeof formSchema>;
@@ -24,7 +25,7 @@ type formType = z.infer<typeof formSchema>;
 export default function PhoneLogin() {
   // Defining hooks
   const homePageStep = useContext(HomePageStepContext);
-  const userStore = useUserStore();
+  const [_, setUser] = useLocalStorageState<UserLocalStorage>("user");
   const form = useForm<formType>({
     resolver: zodResolver(formSchema),
   });
@@ -32,8 +33,14 @@ export default function PhoneLogin() {
   // Handling submit event
   const submitHandler: SubmitHandler<formType> = async (data) => {
     await sleep(3000);
+
+    setUser({
+      loginWay: "phone",
+      phoneNumber: data.phoneNumber,
+    });
+
+    homePageStep?.setStep("code");
     toast.success("You are logged in now.");
-    console.log(userStore, data.phoneNumber);
   };
 
   // Returning JSX

@@ -15,7 +15,8 @@ import { emailLogin as formSchema } from "@/lib/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { sleep } from "@/lib/util";
-import useUserStore from "@/lib/store";
+import { UserLocalStorage } from "@/type/localStorage";
+import useLocalStorageState from "use-local-storage-state";
 
 // Defining form type
 type formType = z.infer<typeof formSchema>;
@@ -24,7 +25,7 @@ type formType = z.infer<typeof formSchema>;
 export default function EmailLogin() {
   // Defining hooks
   const homePageStep = useContext(HomePageStepContext);
-  const userStore = useUserStore();
+  const [_, setUser] = useLocalStorageState<UserLocalStorage>("user");
   const form = useForm<formType>({
     resolver: zodResolver(formSchema),
   });
@@ -32,16 +33,21 @@ export default function EmailLogin() {
   // Handling submit event
   const submitHandler: SubmitHandler<formType> = async (data) => {
     await sleep(3000);
+    setUser({
+      loginWay: "email",
+      email: data.email,
+    });
+
+    homePageStep?.setStep("code");
     toast.success("You are logged in now.");
-    console.log(userStore, data.email);
   };
 
   // Returning JSX
   return (
     <>
       <ThemeToggler />
-      <div className="prose dark:prose-invert prose-neutral space-y-0 mb-4">
-        <h1 className="mb-0 mt-2 truncate">Welcome 👋</h1>
+      <div className="prose dark:prose-invert prose-neutral space-y-0 mb-6">
+        <h1 className="mb-4 mt-2 truncate">Welcome 👋</h1>
         <h3 className="mt-0 truncate">
           Lets create your <br />
           <span className="font-bold">account</span> !
