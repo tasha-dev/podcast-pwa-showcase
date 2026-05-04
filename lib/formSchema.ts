@@ -13,3 +13,7 @@ export const phoneNumberLogin = z.object({
 export const emailLogin = z.object({
   email: z.string().email(),
 });
+
+export const OTPLogin = z.object({
+  code: z.string().length(4),
+});

@@ -13,7 +13,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import z from "zod";
 import { phoneNumberLogin as formSchema } from "@/lib/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
 import { sleep } from "@/lib/util";
 import { UserLocalStorage } from "@/type/localStorage";
 import useLocalStorageState from "use-local-storage-state";
@@ -34,13 +33,15 @@ export default function PhoneLogin() {
   const submitHandler: SubmitHandler<formType> = async (data) => {
     await sleep(3000);
 
-    setUser({
-      loginWay: "phone",
-      phoneNumber: data.phoneNumber,
+    setUser((prev) => {
+      return {
+        loginWay: "phone",
+        phoneNumber: data.phoneNumber,
+        ...prev,
+      };
     });
 
     homePageStep?.setStep("code");
-    toast.success("You are logged in now.");
   };
 
   // Returning JSX

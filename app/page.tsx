@@ -2,6 +2,7 @@
 // Forcing next.js to render this component as client side component
 "use client";
 
+import Code from "@/component/miniPage/code";
 // Importing part
 import EmailLogin from "@/component/miniPage/emailLogin";
 import PhoneLogin from "@/component/miniPage/phoneLogin";
@@ -32,7 +33,13 @@ export default function HomePage() {
         step,
       }}
     >
-      {step === "phone" ? <PhoneLogin /> : <EmailLogin />}
+      {step === "phone" ? (
+        <PhoneLogin />
+      ) : step === "email" ? (
+        <EmailLogin />
+      ) : (
+        <Code />
+      )}
     </HomePageStepContext.Provider>
   );
 }

@@ -13,7 +13,6 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import z from "zod";
 import { emailLogin as formSchema } from "@/lib/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
 import { sleep } from "@/lib/util";
 import { UserLocalStorage } from "@/type/localStorage";
 import useLocalStorageState from "use-local-storage-state";
@@ -33,13 +32,15 @@ export default function EmailLogin() {
   // Handling submit event
   const submitHandler: SubmitHandler<formType> = async (data) => {
     await sleep(3000);
-    setUser({
-      loginWay: "email",
-      email: data.email,
+    setUser((prev) => {
+      return {
+        loginWay: "email",
+        email: data.email,
+        ...prev,
+      };
     });
 
     homePageStep?.setStep("code");
-    toast.success("You are logged in now.");
   };
 
   // Returning JSX
