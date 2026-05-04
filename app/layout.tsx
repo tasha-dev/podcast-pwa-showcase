@@ -6,7 +6,7 @@ import localFont from "next/font/local";
 import "@/app/style.css";
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import { Toaster } from "sonner";
+import Toaster from "@/component/ui/toaster";
 
 // Defining metadata
 export const metadata: Metadata = {
@@ -140,7 +140,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             interFont.className,
           )}
         >
-          <Toaster position="bottom-center" richColors />
+          <Toaster />
           <div className="lg:max-w-lg px-4 lg:py-8 py-4 mx-auto overflow-x-hidden overflow-y-auto h-dvh bg-white dark:bg-neutral-900 text-neutral-900">
             {children}
           </div>

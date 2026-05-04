@@ -30,7 +30,7 @@ export default function Tooltip({
       <AnimatePresence key="Tooltip-Content">
         {open && (
           <motion.div
-            className="absolute top-full left-0 text-base shrink-0"
+            className="absolute top-full left-0 text-base shrink-0 z-40"
             transition={{
               duration: 0.4,
               ease: "easeInOut",
