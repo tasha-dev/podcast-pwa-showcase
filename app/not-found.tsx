@@ -23,8 +23,8 @@ export default function NotFoundPage() {
         </FadeUp>
       </div>
       <FadeUp delay={2}>
-        <Button type="button" asChild>
-          <Link href="/">Head home ?</Link>
+        <Button asChild>
+          <Link href="/">Head home</Link>
         </Button>
       </FadeUp>
     </>

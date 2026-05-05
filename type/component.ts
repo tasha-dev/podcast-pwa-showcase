@@ -50,3 +50,9 @@ export interface OTPProps {
   onValueChange?: (value: string) => void;
   errorMessage?: string;
 }
+
+export interface ImageInputProps {
+  value?: string;
+  onValueChange?: (value: string) => void;
+  className?: string;
+}

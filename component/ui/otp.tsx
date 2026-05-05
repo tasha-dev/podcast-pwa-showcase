@@ -31,7 +31,7 @@ export default function OTP({
                   "size-14 rounded-md outline-0 transition-all duration-500 flex items-center justify-center text-sm",
                   "data-[errored=false]:text-base data-[errored=true]:text-red-500",
                   "bg-transparent border-2 border-current",
-                  "ring-current/40 data-[focused=false]:ring-0 data-[focused=true]:ring-3",
+                  slot.isActive && "ring-current/40 ring-3",
                 )}
                 {...slot}
               >

@@ -17,3 +17,10 @@ export const emailLogin = z.object({
 export const OTPLogin = z.object({
   code: z.string().length(4),
 });
+
+export const InfoForm = z.object({
+  fullName: z.string().min(5).max(30),
+  password: z.string().min(8).max(12),
+  dateOfBirth: z.string(), // ISO string
+  image: z.string(),
+});

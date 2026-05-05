@@ -6,4 +6,7 @@ export interface UserLocalStorage {
   email?: string;
   phoneNumber?: string;
   code?: string;
+  image?: string;
+  dateOfBirth?: string;
+  password?: string;
 }

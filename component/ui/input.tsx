@@ -5,6 +5,7 @@
 // Importing part
 import { cn } from "@/lib/util";
 import { InputProps } from "@/type/component";
+import { Eye } from "lucide-react";
 import { useState } from "react";
 
 // Creating and exporting Input component as default
@@ -12,14 +13,17 @@ export default function Input({
   className,
   label,
   left,
+  type = "text",
   placeholder,
   autoFocus = false,
   errorMessage,
+  value,
   ...props
 }: InputProps) {
   // Defining hooks
   const [focused, setFocused] = useState<boolean>(autoFocus);
   const [labelActive, setLabelActive] = useState<boolean>(false);
+  const [typeState, setTypeState] = useState<typeof type>(type);
 
   // Returning JSX
   return (
@@ -68,6 +72,9 @@ export default function Input({
         )}
         <input
           placeholder={placeholder}
+          autoComplete={"off"}
+          value={value}
+          type={typeState}
           onBlur={(e) => {
             setFocused(false);
             if (e.target.value === "") setLabelActive(false);
@@ -82,6 +89,22 @@ export default function Input({
           )}
           {...props}
         />
+        {type === "password" && (
+          <button
+            onFocus={() => setFocused(true)}
+            type="button"
+            onClick={() =>
+              typeState === "password"
+                ? setTypeState("text")
+                : setTypeState("password")
+            }
+            className={
+              "shrink-0 border-l-2 border-l-current flex items-center justify-center size-9 outline-0 cursor-pointer"
+            }
+          >
+            <Eye className="size-4" />
+          </button>
+        )}
       </div>
       {errorMessage && (
         <p className="mt-1.5 text-red-500 text-left text-sm font-normal">

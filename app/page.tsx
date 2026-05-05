@@ -5,6 +5,7 @@
 // Importing part
 import Code from "@/component/miniPage/code";
 import EmailLogin from "@/component/miniPage/emailLogin";
+import Info from "@/component/miniPage/info";
 import PhoneLogin from "@/component/miniPage/phoneLogin";
 import { HomePageStepContext } from "@/lib/context";
 import { HomePageContextType } from "@/type/context";
@@ -38,11 +39,13 @@ export default function HomePage() {
           <PhoneLogin />
         ) : step === "email" ? (
           <EmailLogin />
-        ) : (
+        ) : step === "code" ? (
           <Code />
+        ) : (
+          <Info />
         )
       ) : (
-        ""
+        <Info />
       )}
     </HomePageStepContext.Provider>
   );
