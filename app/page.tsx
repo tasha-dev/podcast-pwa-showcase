@@ -2,8 +2,8 @@
 // Forcing next.js to render this component as client side component
 "use client";
 
-import Code from "@/component/miniPage/code";
 // Importing part
+import Code from "@/component/miniPage/code";
 import EmailLogin from "@/component/miniPage/emailLogin";
 import PhoneLogin from "@/component/miniPage/phoneLogin";
 import { HomePageStepContext } from "@/lib/context";
@@ -16,7 +16,7 @@ import useLocalStorageState from "use-local-storage-state";
 export default function HomePage() {
   // Defining hooks
   const [step, setStep] = useState<HomePageContextType["step"]>("phone");
-  const userLocalStorage = useLocalStorageState<UserLocalStorage>("user", {
+  const [user] = useLocalStorageState<UserLocalStorage>("user", {
     defaultValue: {
       loginWay: undefined,
       fullName: undefined,
@@ -33,12 +33,16 @@ export default function HomePage() {
         step,
       }}
     >
-      {step === "phone" ? (
-        <PhoneLogin />
-      ) : step === "email" ? (
-        <EmailLogin />
+      {!user.code ? (
+        step === "phone" ? (
+          <PhoneLogin />
+        ) : step === "email" ? (
+          <EmailLogin />
+        ) : (
+          <Code />
+        )
       ) : (
-        <Code />
+        ""
       )}
     </HomePageStepContext.Provider>
   );

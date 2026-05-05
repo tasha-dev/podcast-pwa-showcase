@@ -4,16 +4,20 @@
 
 // Importing part
 import FadeUp from "@/component/animation/fadeUp";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { HomePageStepContext } from "@/lib/context";
 import { SubmitHandler, useForm } from "react-hook-form";
 import z from "zod";
 import { OTPLogin as formSchema } from "@/lib/formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
-import { sleep } from "@/lib/util";
+import { getFormattedTime, sleep } from "@/lib/util";
 import { UserLocalStorage } from "@/type/localStorage";
 import useLocalStorageState from "use-local-storage-state";
+import OTP from "../ui/otp";
+import Button from "../ui/button";
+import useTimer from "@/hook/useTimer";
+import { ArrowLeft } from "lucide-react";
 
 // Defining form type
 type formType = z.infer<typeof formSchema>;
@@ -22,7 +26,9 @@ type formType = z.infer<typeof formSchema>;
 export default function Code() {
   // Defining hooks
   const homePageStep = useContext(HomePageStepContext);
+  const timer = useTimer(60000);
   const [user, setUser] = useLocalStorageState<UserLocalStorage>("user");
+  const [resending, setResending] = useState<boolean>(false);
   const form = useForm<formType>({
     resolver: zodResolver(formSchema),
   });
@@ -45,9 +51,24 @@ export default function Code() {
   // Returning JSX
   return (
     <>
-      <div className="prose dark:prose-invert prose-neutral space-y-0 mb-6">
+      {user?.loginWay && (
+        <Button
+          disabled={form.formState.isSubmitting || resending}
+          size="icon"
+          onClick={() =>
+            user.loginWay === "phone"
+              ? homePageStep?.setStep("phone")
+              : homePageStep?.setStep("email")
+          }
+        >
+          <ArrowLeft />
+        </Button>
+      )}
+      <div className="prose dark:prose-invert prose-neutral mb-6 max-w-full">
         <FadeUp>
-          <h1 className="mb-4 mt-0 truncate text-center">00:59</h1>
+          <h1 className="mb-4 mt-0 truncate text-center">
+            {getFormattedTime(timer.time)}
+          </h1>
         </FadeUp>
         <FadeUp delay={1}>
           <h3 className="mt-0 truncate text-center">
@@ -62,8 +83,44 @@ export default function Code() {
             Enter it here.
           </h3>
         </FadeUp>
-        <FadeUp>OTP Group</FadeUp>
       </div>
+      <FadeUp delay={2}>
+        <form action="#" onSubmit={form.handleSubmit(submitHandler)}>
+          <OTP
+            lenght={4}
+            errorMessage={form.formState.errors.code?.message}
+            onValueChange={(value) => form.setValue("code", value)}
+            className="mb-8"
+          />
+          <div className="flex gap-1.5 flex-wrap items-center justify-center">
+            <Button
+              loading={form.formState.isSubmitting}
+              type="submit"
+              disabled={resending}
+            >
+              Submit
+            </Button>
+            {user?.loginWay && (
+              <Button
+                type="button"
+                variant="secondary"
+                disabled={form.formState.isSubmitting || timer.time !== 0}
+                loading={resending}
+                onClick={async () => {
+                  setResending(true);
+                  await sleep(3000);
+
+                  setResending(false);
+                  timer.reset();
+                  toast.success("Another code has been sent.");
+                }}
+              >
+                Resend
+              </Button>
+            )}
+          </div>
+        </form>
+      </FadeUp>
     </>
   );
 }

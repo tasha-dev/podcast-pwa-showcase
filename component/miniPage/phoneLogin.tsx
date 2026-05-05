@@ -48,7 +48,7 @@ export default function PhoneLogin() {
   return (
     <>
       <ThemeToggler />
-      <div className="prose dark:prose-invert prose-neutral space-y-0">
+      <div className="prose dark:prose-invert prose-neutral max-w-full">
         <FadeUp className="mb-4">
           <h1 className="mb-0 mt-2 truncate">Welcome 👋</h1>
         </FadeUp>

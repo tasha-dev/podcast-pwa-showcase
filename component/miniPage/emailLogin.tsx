@@ -47,7 +47,7 @@ export default function EmailLogin() {
   return (
     <>
       <ThemeToggler />
-      <div className="prose dark:prose-invert prose-neutral space-y-0 mb-6">
+      <div className="prose dark:prose-invert prose-neutral max-w-full mb-6">
         <h1 className="mb-4 mt-2 truncate">Welcome 👋</h1>
         <h3 className="mt-0 truncate">
           Lets create your <br />

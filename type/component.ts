@@ -43,3 +43,10 @@ export interface InputProps extends Omit<ComponentProps<"input">, "id"> {
         text: string;
       };
 }
+
+export interface OTPProps {
+  lenght: number;
+  className?: string;
+  onValueChange?: (value: string) => void;
+  errorMessage?: string;
+}
