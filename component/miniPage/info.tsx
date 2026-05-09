@@ -4,8 +4,6 @@
 
 // Importing part
 import Button from "@/component/ui/button";
-import { useContext } from "react";
-import { HomePageStepContext } from "@/lib/context";
 import { SubmitHandler, useForm } from "react-hook-form";
 import z from "zod";
 import { InfoForm as formSchema } from "@/lib/formSchema";
@@ -17,6 +15,9 @@ import Link from "next/link";
 import ImageInput from "../imageInput";
 import FadeUp from "../animation/fadeUp";
 import Input from "../ui/input";
+import { toast } from "sonner";
+import DatePicker from "../ui/datePicker";
+import { useRouter } from "next/navigation";
 
 // Defining form type
 type formType = z.infer<typeof formSchema>;
@@ -24,28 +25,27 @@ type formType = z.infer<typeof formSchema>;
 // Creating and exporting Info mini page as deafult
 export default function Info() {
   // Defining hooks
-  const homePageStep = useContext(HomePageStepContext);
   const [user, setUser] = useLocalStorageState<UserLocalStorage>("user");
+  const router = useRouter();
   const form = useForm<formType>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      image: user?.image,
-      dateOfBirth: user?.dateOfBirth,
-      fullName: user?.fullName,
-      password: user?.password,
-    },
+    defaultValues: user,
   });
 
   // Handling submit event
   const submitHandler: SubmitHandler<formType> = async (data) => {
     await sleep(3000);
-    setUser((prev) => {
-      return {
-        ...prev,
-      };
+
+    setUser({
+      ...user,
+      image: data.image,
+      fullName: data.fullName,
+      dateOfBirth: data.dateOfBirth,
+      password: data.password,
     });
 
-    homePageStep?.setStep("code");
+    toast.success("Your information is saved locally.");
+    router.push("/home");
   };
 
   // Returning JSX
@@ -66,6 +66,7 @@ export default function Info() {
         >
           <FadeUp delay={1}>
             <ImageInput
+              errorMessage={form.formState.errors.image?.message}
               onValueChange={(value) => form.setValue("image", value)}
               value={form.getValues("image")}
               className="mx-auto"
@@ -74,37 +75,33 @@ export default function Info() {
           <FadeUp delay={2}>
             <Input
               type="text"
-              onChange={(e) => form.setValue("fullName", e.target.value)}
-              defaultValue={form.getValues("fullName")}
               errorMessage={form.formState.errors.fullName?.message}
+              defaultValue={user?.fullName}
               label={{
                 id: "fullName",
                 title: "Your full name",
               }}
+              {...form.register("fullName")}
             />
           </FadeUp>
           <FadeUp delay={3}>
             <Input
               type="password"
-              onChange={(e) => form.setValue("password", e.target.value)}
-              defaultValue={form.getValues("password")}
+              defaultValue={user?.password}
               errorMessage={form.formState.errors.password?.message}
               label={{
                 id: "password",
                 title: "Password",
               }}
+              {...form.register("password")}
             />
           </FadeUp>
           <FadeUp delay={4}>
-            <Input
-              onChange={(e) => form.setValue("dateOfBirth", e.target.value)}
-              defaultValue={form.getValues("dateOfBirth")}
+            <DatePicker
+              value={form.getValues("dateOfBirth")}
+              onValueChange={(value) => form.setValue("dateOfBirth", value)}
               errorMessage={form.formState.errors.dateOfBirth?.message}
-              type="date"
-              label={{
-                id: "dateOfBirth",
-                title: "Your date of birth",
-              }}
+              label="Your date of birth"
             />
             <Button
               type="submit"

@@ -37,11 +37,9 @@ export default function Code() {
   const submitHandler: SubmitHandler<formType> = async (data) => {
     await sleep(3000);
 
-    setUser((prev) => {
-      return {
-        code: data.code,
-        ...prev,
-      };
+    setUser({
+      ...user,
+      code: data.code,
     });
 
     homePageStep?.setStep("info");

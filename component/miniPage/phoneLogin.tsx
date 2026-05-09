@@ -24,7 +24,7 @@ type formType = z.infer<typeof formSchema>;
 export default function PhoneLogin() {
   // Defining hooks
   const homePageStep = useContext(HomePageStepContext);
-  const [_, setUser] = useLocalStorageState<UserLocalStorage>("user");
+  const [user, setUser] = useLocalStorageState<UserLocalStorage>("user");
   const form = useForm<formType>({
     resolver: zodResolver(formSchema),
   });
@@ -33,12 +33,10 @@ export default function PhoneLogin() {
   const submitHandler: SubmitHandler<formType> = async (data) => {
     await sleep(3000);
 
-    setUser((prev) => {
-      return {
-        loginWay: "phone",
-        phoneNumber: data.phoneNumber,
-        ...prev,
-      };
+    setUser({
+      ...user,
+      loginWay: "phone",
+      phoneNumber: data.phoneNumber,
     });
 
     homePageStep?.setStep("code");

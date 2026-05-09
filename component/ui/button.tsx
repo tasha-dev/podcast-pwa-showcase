@@ -28,7 +28,9 @@ export default function Button({
       : "size-9",
     variant === "primary"
       ? "hover:bg-base text-white bg-base-light ring-base/40"
-      : "bg-white dark:bg-neutral-900 text-base ring-base/40",
+      : variant === "secondary"
+        ? "dark:text-white text-black ring-current/40"
+        : "bg-white text-base ring-white/40",
     className,
   );
 

@@ -24,7 +24,7 @@ type formType = z.infer<typeof formSchema>;
 export default function EmailLogin() {
   // Defining hooks
   const homePageStep = useContext(HomePageStepContext);
-  const [_, setUser] = useLocalStorageState<UserLocalStorage>("user");
+  const [user, setUser] = useLocalStorageState<UserLocalStorage>("user");
   const form = useForm<formType>({
     resolver: zodResolver(formSchema),
   });
@@ -32,12 +32,10 @@ export default function EmailLogin() {
   // Handling submit event
   const submitHandler: SubmitHandler<formType> = async (data) => {
     await sleep(3000);
-    setUser((prev) => {
-      return {
-        loginWay: "email",
-        email: data.email,
-        ...prev,
-      };
+    setUser({
+      ...user,
+      loginWay: "email",
+      email: data.email,
     });
 
     homePageStep?.setStep("code");

@@ -5,7 +5,7 @@
 // Importing part
 import { cn } from "@/lib/util";
 import { InputProps } from "@/type/component";
-import { Eye } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 
 // Creating and exporting Input component as default
@@ -17,15 +17,19 @@ export default function Input({
   placeholder,
   autoFocus = false,
   errorMessage,
-  value,
+  onFocus,
+  onBlur,
+  defaultValue,
   ...props
 }: InputProps) {
   // Defining hooks
   const [focused, setFocused] = useState<boolean>(autoFocus);
-  const [labelActive, setLabelActive] = useState<boolean>(false);
   const [typeState, setTypeState] = useState<typeof type>(type);
+  const [labelActive, setLabelActive] = useState<boolean>(
+    defaultValue ? true : false,
+  );
 
-  // Returning JSX
+  // Conditional rendering
   return (
     <div className={className}>
       <div
@@ -33,7 +37,7 @@ export default function Input({
         className={cn(
           errorMessage ? "text-red-500" : "text-base",
           label && "relative",
-          "rounded-md h-9 w-full",
+          "rounded-md h-9 w-full bg-white dark:bg-neutral-900",
           "border-2 border-current ring-current/40",
           "flex items-center justify-between transition-all duration-500",
           "data-[focused=true]:ring-3 data-[focused=false]:ring-0",
@@ -73,18 +77,19 @@ export default function Input({
         <input
           placeholder={placeholder}
           autoComplete={"off"}
-          value={value}
           type={typeState}
           onBlur={(e) => {
+            onBlur?.(e);
             setFocused(false);
             if (e.target.value === "") setLabelActive(false);
           }}
-          onFocus={() => {
+          onFocus={(e) => {
+            onFocus?.(e);
             setFocused(true);
             setLabelActive(true);
           }}
           className={cn(
-            "outline-none w-full block  bg-white dark:bg-neutral-900 text-current text-sm font-medium flex-1 px-3",
+            "outline-none w-full block text-current text-sm font-medium flex-1 px-3 h-9",
             "dark:placeholder:text-neutral-600 placeholder:text-neutral-700",
           )}
           {...props}
@@ -92,6 +97,7 @@ export default function Input({
         {type === "password" && (
           <button
             onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
             type="button"
             onClick={() =>
               typeState === "password"
@@ -102,7 +108,11 @@ export default function Input({
               "shrink-0 border-l-2 border-l-current flex items-center justify-center size-9 outline-0 cursor-pointer"
             }
           >
-            <Eye className="size-4" />
+            {typeState === "password" ? (
+              <Eye className="size-4" />
+            ) : (
+              <EyeOff className="size-4" />
+            )}
           </button>
         )}
       </div>

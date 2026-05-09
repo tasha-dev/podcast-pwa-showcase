@@ -1,5 +1,5 @@
 // Codes by mahdi tasha
-// Forcing next.js to render this component as client side component
+// Forcing next.js to render this as client side
 "use client";
 
 // Importing part

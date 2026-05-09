@@ -11,3 +11,11 @@
   --color-base: #0466c8;
   --color-base-light: #1982c4;
 }
+
+/* Adding some styles to base layer of tailwind */
+@layer base {
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+}

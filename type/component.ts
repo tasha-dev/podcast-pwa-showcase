@@ -8,7 +8,7 @@ export interface RootLayoutProps {
 }
 
 export interface ButtonProps extends ComponentProps<"button"> {
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "white";
   size?: "normal" | "icon";
   asChild?: boolean;
   loading?: boolean;
@@ -55,4 +55,22 @@ export interface ImageInputProps {
   value?: string;
   onValueChange?: (value: string) => void;
   className?: string;
+  errorMessage?: string;
+}
+
+export interface DatePickerProps {
+  className?: string;
+  label?: string;
+  onValueChange?: (value: string) => void; // ISO
+  value?: string;
+  errorMessage?: string;
+}
+
+export interface DropdownProps {
+  children: ReactNode;
+  className?: string;
+  options: {
+    label: string;
+    onClick?: () => void;
+  }[];
 }

@@ -23,6 +23,10 @@ export default function HomePage() {
       fullName: undefined,
       email: undefined,
       phoneNumber: undefined,
+      code: undefined,
+      dateOfBirth: undefined,
+      image: undefined,
+      password: undefined,
     },
   });
 

@@ -1,6 +1,7 @@
 // Codes by mahdi tasha
 // Importing part
 import { clsx, type ClassValue } from "clsx";
+import moment, { Moment } from "moment";
 import { twMerge } from "tailwind-merge";
 
 // Creating and exporting utility functions
@@ -32,4 +33,31 @@ export function fileToDataURL(file: File): Promise<string> {
 
     reader.readAsDataURL(file);
   });
+}
+
+export function getDayRole(
+  showingDate: Moment,
+  index: number,
+  selectedDate?: Moment,
+) {
+  const today = moment().format("YYYY/MM/DD");
+  const itemDate = moment(
+    new Date(showingDate.year(), showingDate.month(), index + 1),
+  ).format("YYYY/MM/DD");
+
+  if (moment(itemDate).isAfter(today)) {
+    return "disabled";
+  } else {
+    if (itemDate === today) return "today";
+    else if (
+      selectedDate &&
+      itemDate === moment(selectedDate).format("YYYY/MM/DD")
+    )
+      return "selected";
+    else return "normal";
+  }
+}
+
+export function getStartOfMonthWeekday(year: number, month: number) {
+  return moment({ year, month: month - 1, day: 1 });
 }
