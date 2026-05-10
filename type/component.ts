@@ -4,73 +4,82 @@ import { ComponentProps, ReactElement, ReactNode } from "react";
 
 // Creating and exprting type of props for components
 export interface RootLayoutProps {
-  children: ReactNode;
+   children: ReactNode;
 }
 
 export interface ButtonProps extends ComponentProps<"button"> {
-  variant?: "primary" | "secondary" | "white";
-  size?: "normal" | "icon";
-  asChild?: boolean;
-  loading?: boolean;
+   variant?: "primary" | "secondary" | "white";
+   size?: "normal" | "icon";
+   asChild?: boolean;
+   loading?: boolean;
 }
 
 export interface TooltipProps {
-  children: ReactNode;
-  triggerAsChild?: boolean;
-  content: string;
-  className?: string;
+   children: ReactNode;
+   triggerAsChild?: boolean;
+   content: string;
+   className?: string;
 }
 
 export interface FadeUpProps {
-  children: ReactNode;
-  className?: string;
-  delay?: number;
+   children: ReactNode;
+   className?: string;
+   delay?: number;
 }
 
 export interface InputProps extends Omit<ComponentProps<"input">, "id"> {
-  errorMessage?: string;
-  label?: {
-    title: string;
-    id: string;
-  };
-  left?:
-    | {
-        type: "icon";
-        icon: ReactNode;
-      }
-    | {
-        type: "text";
-        text: string;
-      };
+   errorMessage?: string;
+   label?: {
+      title: string;
+      id: string;
+   };
+   left?:
+      | {
+           type: "icon";
+           icon: ReactNode;
+        }
+      | {
+           type: "text";
+           text: string;
+        };
 }
 
 export interface OTPProps {
-  lenght: number;
-  className?: string;
-  onValueChange?: (value: string) => void;
-  errorMessage?: string;
+   lenght: number;
+   className?: string;
+   onValueChange?: (value: string) => void;
+   errorMessage?: string;
 }
 
 export interface ImageInputProps {
-  value?: string;
-  onValueChange?: (value: string) => void;
-  className?: string;
-  errorMessage?: string;
+   value?: string;
+   onValueChange?: (value: string) => void;
+   className?: string;
+   errorMessage?: string;
 }
 
 export interface DatePickerProps {
-  className?: string;
-  label?: string;
-  onValueChange?: (value: string) => void; // ISO
-  value?: string;
-  errorMessage?: string;
+   className?: string;
+   label?: string;
+   onValueChange?: (value: string) => void; // ISO
+   value?: string;
+   errorMessage?: string;
 }
 
 export interface DropdownProps {
-  className?: string;
-  trigger: string;
-  options: {
-    label: string;
-    onSelect?: () => void;
-  }[];
+   className?: string;
+   trigger: string;
+   options: {
+      label: string;
+      onSelect?: () => void;
+   }[];
+}
+
+export interface AuthProviderProps {
+   children: ReactNode;
+}
+
+export interface FakeLoadingProps {
+   children: ReactNode;
+   time?: number;
 }
