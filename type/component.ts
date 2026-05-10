@@ -1,6 +1,7 @@
 // Codes by mahdi tasha
 // Importing part
 import { ComponentProps, ReactElement, ReactNode } from "react";
+import { Article } from "./general";
 
 // Creating and exprting type of props for components
 export interface RootLayoutProps {
@@ -96,4 +97,9 @@ export interface HeaderProps {
 
 export interface LayoutProps {
    children: ReactNode;
+}
+
+export interface ArticleProps {
+   className?: string;
+   data: Article;
 }
