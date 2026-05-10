@@ -8,7 +8,7 @@ export interface RootLayoutProps {
 }
 
 export interface ButtonProps extends ComponentProps<"button"> {
-   variant?: "primary" | "secondary" | "white";
+   variant?: "primary" | "secondary" | "white" | "outline";
    size?: "normal" | "icon";
    asChild?: boolean;
    loading?: boolean;
@@ -19,6 +19,7 @@ export interface TooltipProps {
    triggerAsChild?: boolean;
    content: string;
    className?: string;
+   side?: "left" | "right";
 }
 
 export interface FadeUpProps {
@@ -82,4 +83,17 @@ export interface AuthProviderProps {
 export interface FakeLoadingProps {
    children: ReactNode;
    time?: number;
+}
+
+export interface ThemeTogglerProps {
+   className?: string;
+   side?: TooltipProps["side"];
+}
+
+export interface HeaderProps {
+   className?: string;
+}
+
+export interface LayoutProps {
+   children: ReactNode;
 }
