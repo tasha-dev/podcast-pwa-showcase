@@ -48,8 +48,10 @@ export default function Header({ className }: HeaderProps) {
          <div className="flex items-center justify-between gap-3">
             <ThemeToggler side="right" />
             <Tooltip side="right" triggerAsChild content="Notifications">
-               <Button size="icon" variant="outline">
-                  <Bell className="size-4" />
+               <Button size="icon" variant="outline" asChild>
+                  <Link href="/notifications">
+                     <Bell className="size-4" />
+                  </Link>
                </Button>
             </Tooltip>
          </div>
