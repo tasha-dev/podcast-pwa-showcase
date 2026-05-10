@@ -1,6 +1,6 @@
 // Codes by mahdi tasha
 // Importing part
-import { ComponentProps, ReactNode } from "react";
+import { ComponentProps, ReactElement, ReactNode } from "react";
 
 // Creating and exprting type of props for components
 export interface RootLayoutProps {
@@ -67,10 +67,10 @@ export interface DatePickerProps {
 }
 
 export interface DropdownProps {
-  children: ReactNode;
   className?: string;
+  trigger: string;
   options: {
     label: string;
-    onClick?: () => void;
+    onSelect?: () => void;
   }[];
 }

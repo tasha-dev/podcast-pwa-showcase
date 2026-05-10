@@ -110,19 +110,45 @@ export default function DatePicker({
                   </Button>
                   <Dropdown
                     className="flex-1"
-                    options={[
-                      {
-                        label: "X",
-                      },
-                    ]}
-                  >
-                    <Button variant="secondary">
-                      {moment(valueState).format("YYYY")}
-                    </Button>
-                  </Dropdown>
-                  <Button variant="secondary" className="flex-1">
-                    {moment(valueState).format("MMMM")}
-                  </Button>
+                    trigger={moment(valueState).format("YYYY")}
+                    options={[...new Array(100)].map((_, index) => {
+                      const nowYear = new Date().getFullYear();
+                      const thisYear = nowYear - index;
+
+                      return {
+                        label: thisYear.toString(),
+                        onSelect: () => {
+                          const dateToSet = new Date(
+                            thisYear,
+                            valueState.month(),
+                            valueState.day(),
+                          );
+
+                          const momentOfDate = moment(dateToSet);
+                          setValueState(momentOfDate);
+                        },
+                      };
+                    })}
+                  />
+                  <Dropdown
+                    className="flex-1"
+                    trigger={moment(valueState).format("MMMM")}
+                    options={[...new Array(12)].map((_, index) => {
+                      const thisMonth = new Date(
+                        valueState.year(),
+                        index + 1,
+                        valueState.day(),
+                      );
+
+                      const momentOfDate = moment(thisMonth);
+                      return {
+                        label: momentOfDate.format("MMMM"),
+                        onSelect: () => {
+                          setValueState(momentOfDate);
+                        },
+                      };
+                    })}
+                  />
                   <Button
                     variant="white"
                     size="icon"
@@ -213,7 +239,7 @@ export default function DatePicker({
           </div>
           <div
             className={
-              "shrink-0 border-l-2 border-l-current flex items-center justify-center size-9 outline-0 cursor-pointer"
+              "shrink-0 flex items-center justify-center size-9 outline-0 cursor-pointer"
             }
           >
             <Calendar1 className="size-4" />

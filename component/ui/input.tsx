@@ -61,7 +61,7 @@ export default function Input({
         {left && (
           <div
             className={cn(
-              "shrink-0 border-r-2 border-r-current flex items-center justify-center",
+              "shrink-0 flex items-center justify-center",
               left.type === "icon" ? "size-9" : "px-3 h-9",
             )}
           >
@@ -105,7 +105,7 @@ export default function Input({
                 : setTypeState("password")
             }
             className={
-              "shrink-0 border-l-2 border-l-current flex items-center justify-center size-9 outline-0 cursor-pointer"
+              "shrink-0 flex items-center justify-center size-9 outline-0 cursor-pointer"
             }
           >
             {typeState === "password" ? (

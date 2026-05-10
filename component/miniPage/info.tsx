@@ -18,6 +18,7 @@ import Input from "../ui/input";
 import { toast } from "sonner";
 import DatePicker from "../ui/datePicker";
 import { useRouter } from "next/navigation";
+import ThemeToggler from "../ui/themeToggler";
 
 // Defining form type
 type formType = z.infer<typeof formSchema>;
@@ -51,9 +52,12 @@ export default function Info() {
   // Returning JSX
   return (
     <>
-      <Button asChild>
-        <Link href="/home">Leave for now</Link>
-      </Button>
+      <div className="flex items-center justify-start gap-3 flex-wrap">
+        <Button asChild>
+          <Link href="/home">Leave for now</Link>
+        </Button>
+        <ThemeToggler />
+      </div>
       <div className="prose dark:prose-invert prose-neutral max-w-full mb-6">
         <FadeUp>
           <h1 className="mt-2 truncate">Your account information</h1>
