@@ -1,4 +1,8 @@
 // Codes by mahdi tasha
+// Importing part
+import { MDXProps } from "mdx/types";
+import { ReactNode } from "react";
+
 // Creating and exporting General purpos typeso
 export interface Article {
    author: {
@@ -8,5 +12,7 @@ export interface Article {
    id: string;
    createdAt: string; // ISO
    description: string;
-   content: string;
+   title: string;
+   label?: string[];
+   content: (props: MDXProps) => ReactNode;
 }

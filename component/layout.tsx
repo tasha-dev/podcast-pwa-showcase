@@ -14,7 +14,7 @@ export default function Layout({ children }: RootLayoutProps) {
    return (
       <AuthProvider>
          <Header className="mb-5" />
-         {children}
+         <main className="mb-20">{children}</main>
          <Navbar />
       </AuthProvider>
    );

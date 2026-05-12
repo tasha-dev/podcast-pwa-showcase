@@ -3,6 +3,7 @@
 "use client";
 
 // Importing part
+import articles from "@/data/articles";
 import Article from "../article";
 import Layout from "../layout";
 
@@ -19,18 +20,9 @@ export default function HomeContainer() {
                were gone.
             </p>
          </div>
-         <Article
-            className="w-full"
-            data={{
-               author: {
-                  name: "Mahdi Tasha",
-               },
-               id: "idk",
-               createdAt: new Date().toISOString(),
-               content: "HI",
-               description: "HIHIHIHI",
-            }}
-         />
+         {articles.map((item, index) => (
+            <Article key={index} data={item} />
+         ))}
       </Layout>
    );
 }

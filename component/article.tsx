@@ -3,7 +3,7 @@
 "use client";
 
 // Importing part
-import { cn, sleep } from "@/lib/util";
+import { cn, getRandomLovelyColor, sleep } from "@/lib/util";
 import { ArticleProps } from "@/type/component";
 import { UserReactionsLocalStorage } from "@/type/localStorage";
 import { AnimatePresence, motion } from "framer-motion";
@@ -19,11 +19,12 @@ const reactions = ["😂", "🤯", "💔", "❤️"];
 
 // Creating and exporting Article component as deafult
 export default function Article({
-   data: { author, description, createdAt, id },
+   data: { author, description, createdAt, id, title, label },
    hasReaction = true,
    className,
 }: ArticleProps) {
    // Defining hooks
+   const [color] = useState(getRandomLovelyColor());
    const [reactionsLoading, setReactionsLoading] = useState<boolean>(false);
    const [userReactionsState, setReactionsLike] =
       useLocalStorageState<UserReactionsLocalStorage>("userReactions");
@@ -69,9 +70,12 @@ export default function Article({
       <div className="relative">
          <Link
             href={`/article/${id}`}
+            style={{
+               color,
+            }}
             className={cn(
-               "bg-indigo-600 p-4 rounded-xl text-white block transition-all duration-500 shadow-xl shadow-black/20 relative",
-               "active:scale-95 ring-0 ring-indigo-600/40 focus-visible:ring-4 outline-0",
+               "p-4 rounded-2xl block transition-all duration-500 shadow-xl shadow-black/20 relative",
+               "active:scale-95 ring-0 focus-visible:ring-4 outline-0 bg-current ring-current/40",
                className,
             )}
          >
@@ -86,19 +90,43 @@ export default function Article({
                         src={author.image}
                      />
                   ) : (
-                     <div className="size-10 rounded-full bg-amber-500 shrink-0" />
+                     <div className="size-10 rounded-full bg-base shrink-0" />
                   )}
-                  <span className="text-left font-medium text-current block truncate flex-1 text-sm">
-                     {author.name}
-                  </span>
+                  <div className="overflow-hidden flex-1">
+                     <span className="text-left font-bold text-white block truncate flex-1 text-sm mb-1">
+                        {title}
+                     </span>
+                     <span className="text-left font-light text-white block truncate flex-1 text-xs">
+                        {author.name}
+                     </span>
+                  </div>
                </div>
-               <span className="text-right font-light text-current block shrink-0 text-xs">
+               <span className="text-right font-light text-white block shrink-0 text-xs">
                   {moment(createdAt).fromNow()}
                </span>
             </div>
-            <div className="prose max-w-full mb-8">
-               <p className="my-0 text-white">{description}</p>
+            <div
+               className={cn(
+                  "prose max-w-full",
+                  label && label.length !== 0 ? "mb-3" : "mb-8",
+               )}
+            >
+               <p className="my-0 text-white text-base">{description}</p>
             </div>
+            {label && label.length !== 0 && (
+               <div className="flex items-center justify-start gap-3 flex-wrap mb-8">
+                  {label.map((item, index) => (
+                     <div
+                        key={index}
+                        className="text-white bg-current/20 rounded-[45rem] h-8 px-3 flex items-center justify-center border border-current"
+                     >
+                        <span className="text-center block text-current font-medium text-xs">
+                           {item}
+                        </span>
+                     </div>
+                  ))}
+               </div>
+            )}
          </Link>
          {hasReaction && (
             <div
