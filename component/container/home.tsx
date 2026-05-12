@@ -2,8 +2,8 @@
 // Forcing next.js to render this component as client side
 "use client";
 
-import Article from "../article";
 // Importing part
+import Article from "../article";
 import Layout from "../layout";
 
 // Creating and Exporting Home page container (contains all content of home page)

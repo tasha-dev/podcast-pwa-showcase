@@ -104,14 +104,14 @@ export default function Article({
             <div
                className={cn(
                   "flex items-center rounded-[45rem] dark:bg-neutral-800 bg-white absolute top-full left-4 -translate-y-1/2 p-1",
-                  "shadow-xl shadow-black/20 max-w-[calc(100%-32px)] w-fit relative",
+                  "shadow-xl shadow-black/20 max-w-[calc(100%-32px)] w-fit relative transition-all duration-500 ring-0 ring-neutral-800/40 dark:ring-white/40 focus-within:ring-4 outline-0",
                   reactionsLoading ? "overflow-hidden" : "overflow-auto",
                )}
             >
                <AnimatePresence mode="wait">
                   {reactionsLoading && (
                      <motion.div
-                        className="dark:bg-neutral-200/20 bg-neutral-800/20 backdrop-blur-xl absolute left-0 top-0 w-full h-full flex items-center justify-center"
+                        className="dark:bg-neutral-200/20 bg-neutral-800/20 backdrop-blur-xl absolute left-0 top-0 w-full h-full"
                         initial={{
                            opacity: 0,
                         }}
@@ -126,7 +126,7 @@ export default function Article({
                            ease: "easeInOut",
                         }}
                      >
-                        <Loader2 className="size-4 animate-spin" />
+                        <Loader2 className="size-4 animate-spin absolute left-1/2 top-1/2 -translate-1/2" />
                      </motion.div>
                   )}
                </AnimatePresence>
@@ -139,7 +139,7 @@ export default function Article({
                      onClick={() => onClickHandler(item)}
                      className={cn(
                         "flex items-center justify-center cursor-pointer size-9 text-lg shrink-0 transition-all duration-500 active:scale-90 rounded-full",
-                        "data-[active=false]:bg-transparent data-[active=true]:bg-base",
+                        "data-[active=false]:bg-transparent data-[active=true]:bg-base outline-0",
                      )}
                   >
                      {item}

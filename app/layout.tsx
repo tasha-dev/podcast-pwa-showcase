@@ -10,16 +10,16 @@ import Toaster from "@/component/ui/toaster";
 
 // Defining metadata
 export const metadata: Metadata = {
-  title: {
-    template: "%s | Podcast",
-    default: "Podcast PWA Showcase | Mahdi Tasha",
-  },
-  description:
-    "A small podcast pwa app which showcases my (Mahdi Tasha) skills in style and animation.",
-  keywords: ["Podcast", "Music", "Next", "Code", "Front End", "React"],
-  authors: [{ name: "Mahdi Tasha", url: "https://github.com/tasha-dev/" }],
-  creator: "Mahdi Tasha",
-  publisher: "Mahdi Tasha",
+   title: {
+      template: "%s | Podcast",
+      default: "Podcast PWA Showcase | Mahdi Tasha",
+   },
+   description:
+      "A small podcast pwa app which showcases my (Mahdi Tasha) skills in style and animation.",
+   keywords: ["Podcast", "Music", "Next", "Code", "Front End", "React"],
+   authors: [{ name: "Mahdi Tasha", url: "https://github.com/tasha-dev/" }],
+   creator: "Mahdi Tasha",
+   publisher: "Mahdi Tasha",
 };
 
 // Defining fonts
@@ -33,122 +33,122 @@ export const metadata: Metadata = {
 // });
 
 const interFont = localFont({
-  src: [
-    {
-      path: "../public/font/inter/Inter_18pt-Thin.ttf",
-      weight: "100",
-      style: "normal",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-ThinItalic.ttf",
-      weight: "100",
-      style: "italic",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-ExtraLight.ttf",
-      weight: "200",
-      style: "normal",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-ExtraLightItalic.ttf",
-      weight: "200",
-      style: "italic",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-Light.ttf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-LightItalic.ttf",
-      weight: "300",
-      style: "italic",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-Italic.ttf",
-      weight: "400",
-      style: "italic",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-Medium.ttf",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-MediumItalic.ttf",
-      weight: "500",
-      style: "italic",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-SemiBold.ttf",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-SemiBoldItalic.ttf",
-      weight: "600",
-      style: "italic",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-Bold.ttf",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-BoldItalic.ttf",
-      weight: "700",
-      style: "italic",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-ExtraBold.ttf",
-      weight: "800",
-      style: "normal",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-ExtraBoldItalic.ttf",
-      weight: "800",
-      style: "italic",
-    },
+   src: [
+      {
+         path: "../public/font/inter/Inter_18pt-Thin.ttf",
+         weight: "100",
+         style: "normal",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-ThinItalic.ttf",
+         weight: "100",
+         style: "italic",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-ExtraLight.ttf",
+         weight: "200",
+         style: "normal",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-ExtraLightItalic.ttf",
+         weight: "200",
+         style: "italic",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-Light.ttf",
+         weight: "300",
+         style: "normal",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-LightItalic.ttf",
+         weight: "300",
+         style: "italic",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-Regular.ttf",
+         weight: "400",
+         style: "normal",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-Italic.ttf",
+         weight: "400",
+         style: "italic",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-Medium.ttf",
+         weight: "500",
+         style: "normal",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-MediumItalic.ttf",
+         weight: "500",
+         style: "italic",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-SemiBold.ttf",
+         weight: "600",
+         style: "normal",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-SemiBoldItalic.ttf",
+         weight: "600",
+         style: "italic",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-Bold.ttf",
+         weight: "700",
+         style: "normal",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-BoldItalic.ttf",
+         weight: "700",
+         style: "italic",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-ExtraBold.ttf",
+         weight: "800",
+         style: "normal",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-ExtraBoldItalic.ttf",
+         weight: "800",
+         style: "italic",
+      },
 
-    {
-      path: "../public/font/inter/Inter_18pt-Black.ttf",
-      weight: "900",
-      style: "normal",
-    },
-    {
-      path: "../public/font/inter/Inter_18pt-BlackItalic.ttf",
-      weight: "900",
-      style: "italic",
-    },
-  ],
+      {
+         path: "../public/font/inter/Inter_18pt-Black.ttf",
+         weight: "900",
+         style: "normal",
+      },
+      {
+         path: "../public/font/inter/Inter_18pt-BlackItalic.ttf",
+         weight: "900",
+         style: "italic",
+      },
+   ],
 });
 
 // Creating and exporting RootLayout component as default
 export default function RootLayout({ children }: RootLayoutProps) {
-  // Returning JSX
-  return (
-    <html suppressHydrationWarning lang="en">
-      <ThemeProvider>
-        <body
-          className={cn(
-            "dark:bg-base-light bg-base overflow-hidden",
-            interFont.className,
-          )}
-        >
-          <Toaster />
-          <div
-            id="root-layout"
-            className="lg:max-w-lg px-4 lg:py-8 py-4 mx-auto overflow-x-hidden overflow-y-auto h-dvh bg-white dark:bg-neutral-900 text-neutral-900 relative"
-          >
-            {children}
-          </div>
-        </body>
-      </ThemeProvider>
-    </html>
-  );
+   // Returning JSX
+   return (
+      <html suppressHydrationWarning lang="en">
+         <ThemeProvider>
+            <body
+               className={cn(
+                  "overflow-hidden bg-white dark:bg-neutral-900",
+                  interFont.className,
+               )}
+            >
+               <Toaster />
+               <div
+                  id="root-layout"
+                  className="lg:max-w-lg px-4 lg:py-8 py-4 mx-auto overflow-x-hidden overflow-y-auto h-dvh text-neutral-900 relative"
+               >
+                  {children}
+               </div>
+            </body>
+         </ThemeProvider>
+      </html>
+   );
 }
