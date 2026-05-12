@@ -5,7 +5,7 @@ export interface Article {
       name: string;
       image?: string;
    };
-   href: string;
+   id: string;
    createdAt: string; // ISO
    description: string;
    content: string;

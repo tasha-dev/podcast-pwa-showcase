@@ -101,5 +101,6 @@ export interface LayoutProps {
 
 export interface ArticleProps {
    className?: string;
+   hasReaction?: boolean;
    data: Article;
 }

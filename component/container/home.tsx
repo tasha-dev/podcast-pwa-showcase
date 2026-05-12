@@ -25,10 +25,10 @@ export default function HomeContainer() {
                author: {
                   name: "Mahdi Tasha",
                },
+               id: "idk",
                createdAt: new Date().toISOString(),
                content: "HI",
                description: "HIHIHIHI",
-               href: "/hi",
             }}
          />
       </Layout>

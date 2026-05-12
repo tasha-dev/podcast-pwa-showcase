@@ -9,48 +9,60 @@ import Info from "@/component/miniPage/info";
 import PhoneLogin from "@/component/miniPage/phoneLogin";
 import { HomePageStepContext } from "@/lib/context";
 import { HomePageContextType } from "@/type/context";
-import { UserLocalStorage } from "@/type/localStorage";
+import {
+   UserLocalStorage,
+   UserReactionsLocalStorage,
+} from "@/type/localStorage";
 import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 
 // Creating and Exporting home page as default
 export default function HomePage() {
-  // Defining hooks
-  const [step, setStep] = useState<HomePageContextType["step"]>("phone");
-  const [user] = useLocalStorageState<UserLocalStorage>("user", {
-    defaultValue: {
-      loginWay: undefined,
-      fullName: undefined,
-      email: undefined,
-      phoneNumber: undefined,
-      code: undefined,
-      dateOfBirth: undefined,
-      image: undefined,
-      password: undefined,
-    },
-  });
+   // Defining hooks
+   const [step, setStep] = useState<HomePageContextType["step"]>("phone");
 
-  // Returning JSX
-  return (
-    <HomePageStepContext.Provider
-      value={{
-        setStep,
-        step,
-      }}
-    >
-      {!user.code ? (
-        step === "phone" ? (
-          <PhoneLogin />
-        ) : step === "email" ? (
-          <EmailLogin />
-        ) : step === "code" ? (
-          <Code />
-        ) : (
-          <Info />
-        )
-      ) : (
-        <Info />
-      )}
-    </HomePageStepContext.Provider>
-  );
+   // Defining local storage items
+   const [user] = useLocalStorageState<UserLocalStorage>("user", {
+      defaultValue: {
+         loginWay: undefined,
+         fullName: undefined,
+         email: undefined,
+         phoneNumber: undefined,
+         code: undefined,
+         dateOfBirth: undefined,
+         image: undefined,
+         password: undefined,
+      },
+   });
+
+   const userReactions = useLocalStorageState<UserReactionsLocalStorage>(
+      "userReactions",
+      {
+         defaultValue: [],
+      },
+   );
+
+   // Returning JSX
+   return (
+      <HomePageStepContext.Provider
+         value={{
+            setStep,
+            step,
+         }}
+      >
+         {!user.code ? (
+            step === "phone" ? (
+               <PhoneLogin />
+            ) : step === "email" ? (
+               <EmailLogin />
+            ) : step === "code" ? (
+               <Code />
+            ) : (
+               <Info />
+            )
+         ) : (
+            <Info />
+         )}
+      </HomePageStepContext.Provider>
+   );
 }
