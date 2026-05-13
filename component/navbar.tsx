@@ -5,6 +5,7 @@
 // Importing part
 import { cn } from "@/lib/util";
 import {
+   Bookmark,
    House,
    MessageCircle,
    Podcast,
@@ -22,12 +23,13 @@ const navbarData: {
    disabled?: boolean;
 }[] = [
    {
-      href: "/podcast",
-      icon: <Podcast className="size-7" />,
-   },
-   {
       href: "/search",
       icon: <Search className="size-7" />,
+      disabled: true,
+   },
+   {
+      href: "/podcast",
+      icon: <Podcast className="size-7" />,
    },
    {
       href: "/home",
@@ -38,9 +40,8 @@ const navbarData: {
       icon: <ShoppingBag className="size-7" />,
    },
    {
-      href: "/messages",
-      icon: <MessageCircle className="size-7" />,
-      disabled: true,
+      href: "/bookmark",
+      icon: <Bookmark className="size-7" />,
    },
 ];
 

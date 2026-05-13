@@ -6,6 +6,7 @@ import { Article } from "./general";
 // Creating and exprting type of props for components
 export interface RootLayoutProps {
    children: ReactNode;
+   className?: string;
 }
 
 export interface ButtonProps extends ComponentProps<"button"> {

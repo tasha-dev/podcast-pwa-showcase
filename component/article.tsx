@@ -108,13 +108,22 @@ export default function Article({
             <div
                className={cn(
                   "prose max-w-full",
-                  label && label.length !== 0 ? "mb-3" : "mb-8",
+                  label && label.length !== 0
+                     ? "mb-3"
+                     : hasReaction
+                       ? "mb-8"
+                       : "mb-0",
                )}
             >
                <p className="my-0 text-white">{description}</p>
             </div>
             {label && label.length !== 0 && (
-               <div className="flex items-center justify-start gap-3 flex-wrap mb-8">
+               <div
+                  className={cn(
+                     "flex items-center justify-start gap-3 flex-wrap",
+                     hasReaction && "mb-8",
+                  )}
+               >
                   {label.map((item, index) => (
                      <div
                         key={index}

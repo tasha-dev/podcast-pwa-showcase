@@ -9,13 +9,15 @@ import Header from "./header";
 import Navbar from "./navbar";
 
 // Creating and exporting Layout component as deafult
-export default function Layout({ children }: RootLayoutProps) {
+export default function Layout({ children, className }: RootLayoutProps) {
    // Returning JSX
    return (
       <AuthProvider>
-         <Header className="mb-5" />
-         <main className="mb-20">{children}</main>
-         <Navbar />
+         <div className={className}>
+            <Header className="mb-5" />
+            <main className={"mb-20"}>{children}</main>
+            <Navbar />
+         </div>
       </AuthProvider>
    );
 }
