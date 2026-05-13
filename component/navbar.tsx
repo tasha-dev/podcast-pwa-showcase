@@ -19,6 +19,7 @@ import { ReactNode } from "react";
 const navbarData: {
    icon: ReactNode;
    href: string;
+   disabled?: boolean;
 }[] = [
    {
       href: "/podcast",
@@ -35,6 +36,11 @@ const navbarData: {
    {
       href: "/shop",
       icon: <ShoppingBag className="size-7" />,
+   },
+   {
+      href: "/messages",
+      icon: <MessageCircle className="size-7" />,
+      disabled: true,
    },
 ];
 
@@ -56,10 +62,12 @@ export default function Navbar() {
                href={item.href}
                key={index}
                data-active={pathname === item.href}
+               aria-disabled={item.disabled ?? false}
+               tabIndex={item.disabled ? -1 : 0}
                className={cn(
                   "size-13 flex items-center justify-center pointer-events-auto rounded-full relative z-10 outline-0 transition-all duration-500 ring-0 ring-black/10",
                   "dark:data-[active=true]:bg-blue-400 data-[active=true]:bg-base data-[active=false]:bg-transparent focus-visible:ring-4",
-                  "active:scale-95",
+                  "active:scale-95 aria-disabled:text-current/20 aria-disabled:pointer-events-none",
                )}
             >
                {item.icon}
