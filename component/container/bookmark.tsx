@@ -9,9 +9,21 @@ import LanyardImage from "@/public/image/lanyard.png";
 import articles from "@/data/articles";
 import Article from "../article";
 import { cn } from "@/lib/util";
+import { UserBookmakred } from "@/type/localStorage";
+import useLocalStorageState from "use-local-storage-state";
 
 // Creating and Exporting Bookmark page container
 export default function BookmarkContainer() {
+   // Defining hooks
+   const [userBookmarkedItems] =
+      useLocalStorageState<UserBookmakred>("userBookmarked");
+
+   // Defining variables
+   const userBookmarks = userBookmarkedItems ? [...userBookmarkedItems] : [];
+   const articlesToRender = articles.filter((item) =>
+      userBookmarks.includes(item.id),
+   );
+
    // Returning JSX
    return (
       <Layout className="relative z-0">
@@ -27,7 +39,7 @@ export default function BookmarkContainer() {
                <h1 className="my-0">Bookmarked Articles</h1>
             </div>
             <div>
-               {articles.map((item, index) => (
+               {articlesToRender.map((item, index) => (
                   <Article
                      data={item}
                      key={index}

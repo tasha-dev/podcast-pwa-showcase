@@ -1,12 +1,11 @@
 // Codes by mahdi tasha
 // Importing part
-import { ComponentProps, ReactElement, ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 import { Article } from "./general";
 
 // Creating and exprting type of props for components
 export interface RootLayoutProps {
    children: ReactNode;
-   className?: string;
 }
 
 export interface ButtonProps extends ComponentProps<"button"> {
@@ -94,10 +93,13 @@ export interface ThemeTogglerProps {
 
 export interface HeaderProps {
    className?: string;
+   button?: ReactNode;
 }
 
 export interface LayoutProps {
    children: ReactNode;
+   className?: string;
+   headerButton?: ReactNode;
 }
 
 export interface ArticleProps {
@@ -110,8 +112,4 @@ export interface TabProps {
    className?: string;
    items: [string, string];
    onValueChange?: (value: string) => void;
-}
-
-export interface ChatItemProps {
-   className?: string;
 }

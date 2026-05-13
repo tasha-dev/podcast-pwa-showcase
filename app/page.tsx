@@ -9,12 +9,13 @@ import Info from "@/component/miniPage/info";
 import PhoneLogin from "@/component/miniPage/phoneLogin";
 import { HomePageStepContext } from "@/lib/context";
 import { HomePageContextType } from "@/type/context";
+import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import {
+   UserBookmakred,
    UserLocalStorage,
    UserReactionsLocalStorage,
 } from "@/type/localStorage";
-import { useState } from "react";
-import useLocalStorageState from "use-local-storage-state";
 
 // Creating and Exporting home page as default
 export default function HomePage() {
@@ -37,6 +38,13 @@ export default function HomePage() {
 
    const userReactions = useLocalStorageState<UserReactionsLocalStorage>(
       "userReactions",
+      {
+         defaultValue: [],
+      },
+   );
+
+   const userBookmarkedItems = useLocalStorageState<UserBookmakred>(
+      "userBookmarked",
       {
          defaultValue: [],
       },

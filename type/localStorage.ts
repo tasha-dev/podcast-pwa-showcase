@@ -15,3 +15,5 @@ export interface UserLocalStorage {
    dateOfBirth?: string;
    password?: string;
 }
+
+export type UserBookmakred = string[];

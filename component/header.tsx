@@ -15,7 +15,7 @@ import { cn } from "@/lib/util";
 import Image from "next/image";
 
 // Creating and exporting header component as default
-export default function Header({ className }: HeaderProps) {
+export default function Header({ className, button }: HeaderProps) {
    // Defining hooks
    const [user] = useLocalStorageState<UserLocalStorage>("user");
 
@@ -46,6 +46,7 @@ export default function Header({ className }: HeaderProps) {
             </Link>
          )}
          <div className="flex items-center justify-between gap-3">
+            {button}
             <ThemeToggler side="right" />
             <Tooltip side="right" triggerAsChild content="Notifications">
                <Button size="icon" variant="outline" asChild>
