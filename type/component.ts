@@ -104,3 +104,13 @@ export interface ArticleProps {
    hasReaction?: boolean;
    data: Article;
 }
+
+export interface TabProps {
+   className?: string;
+   items: [string, string];
+   onValueChange?: (value: string) => void;
+}
+
+export interface ChatItemProps {
+   className?: string;
+}

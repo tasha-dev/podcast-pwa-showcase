@@ -16,3 +16,12 @@ export interface Article {
    label?: string[];
    content: (props: MDXProps) => ReactNode;
 }
+
+export interface Chat {
+   lastMessage?: string;
+   lastMessageAt: string;
+   user: {
+      name: string;
+      image?: string;
+   };
+}

@@ -33,10 +33,6 @@ const navbarData: {
       icon: <House className="size-7" />,
    },
    {
-      href: "/messages",
-      icon: <MessageCircle className="size-7" />,
-   },
-   {
       href: "/shop",
       icon: <ShoppingBag className="size-7" />,
    },

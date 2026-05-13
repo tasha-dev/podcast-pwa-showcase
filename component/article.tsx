@@ -111,7 +111,7 @@ export default function Article({
                   label && label.length !== 0 ? "mb-3" : "mb-8",
                )}
             >
-               <p className="my-0 text-white text-base">{description}</p>
+               <p className="my-0 text-white">{description}</p>
             </div>
             {label && label.length !== 0 && (
                <div className="flex items-center justify-start gap-3 flex-wrap mb-8">

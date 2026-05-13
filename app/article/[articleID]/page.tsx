@@ -23,7 +23,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
    } else {
       return (
          <Layout>
-            <div className="prose dark:prose-invert prose-neutral max-w-full mb-4">
+            <div className="prose dark:prose-invert prose-neutral max-w-full mb-4 prose-img:rounded-xl prose-img:w-full prose-img:aspect-video prose-img:object-cover">
                {foundedArticle.content({})}
             </div>
          </Layout>
