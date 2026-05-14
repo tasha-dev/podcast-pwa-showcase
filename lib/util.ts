@@ -76,3 +76,13 @@ export function getRandomLovelyColor() {
    const randomIndex = Math.floor(Math.random() * tailwindLovelyColors.length);
    return tailwindLovelyColors[randomIndex];
 }
+
+export function formatTime(seconds: number) {
+   if (!seconds || Number.isNaN(seconds)) return "00:00";
+   else {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+
+      return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+   }
+}

@@ -54,7 +54,7 @@ export default function Navbar() {
    return (
       <nav
          className={cn(
-            "fixed bottom-0 left-0 bg-linear-to-t from-base toto-base/10 w-full h-1/3 pointer-events-none px-8 pb-4",
+            "fixed bottom-0 left-0 bg-linear-to-t from-base to-transparent via-base/10 w-full h-1/3 pointer-events-none px-8 pb-4",
             "flex items-end justify-center gap-5 text-white z-40",
          )}
       >
